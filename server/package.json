@@ -1,0 +1,16 @@
+{
+  "name": "expense-tracker-server",
+  "version": "1.0.0",
+  "description": "Expense Tracker API — Native Node.js HTTP server with MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5"
+  }
+}
