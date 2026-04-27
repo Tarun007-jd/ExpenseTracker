@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import api from '../api/axios';
 import StatCard from '../components/StatCard';
 import { HiOutlineCash, HiOutlineCalendar, HiOutlineTrendingUp, HiOutlineChartBar } from 'react-icons/hi';
@@ -7,7 +8,20 @@ import {
     PieChart, Pie, Cell, Legend
 } from 'recharts';
 
-const COLORS = ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6', '#64748b'];
+const COLORS = ['#a855f7', '#9333ea', '#7e22ce', '#6b21a8', '#c084fc', '#d8b4fe', '#f3e8ff', '#581c87'];
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: { staggerChildren: 0.1 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+};
 
 const Dashboard = () => {
     const [analytics, setAnalytics] = useState(null);
@@ -55,9 +69,9 @@ const Dashboard = () => {
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
             return (
-                <div className="glass-card p-3 shadow-lg !rounded-lg text-sm">
-                    <p className="font-semibold text-dark-800 dark:text-dark-200">{label}</p>
-                    <p className="text-primary-500 font-bold">₹{payload[0].value.toLocaleString()}</p>
+                <div className="glass-card p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] !rounded-xl text-sm border-none bg-white/90 backdrop-blur-md">
+                    <p className="font-extrabold text-slate-800">{label}</p>
+                    <p className="text-primary-600 font-black text-lg">₹{payload[0].value.toLocaleString()}</p>
                 </div>
             );
         }
@@ -65,143 +79,146 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="space-y-6 animate-fade-in">
-            <div>
-                <h2 className="text-2xl font-bold text-dark-900 dark:text-dark-50">Dashboard</h2>
-                <p className="text-sm text-dark-400 dark:text-dark-500 mt-1">An overview of your financial activity</p>
-            </div>
+        <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="space-y-8"
+        >
+            <motion.div variants={itemVariants}>
+                <h2 className="text-4xl font-black text-slate-900 tracking-tight">Dashboard</h2>
+                <p className="text-base text-slate-500 mt-2 font-medium">An overview of your financial activity</p>
+            </motion.div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard
                     icon={HiOutlineCash}
                     label="Total Expenses"
                     value={`₹${(analytics?.totalAmount || 0).toLocaleString()}`}
                     color="primary"
-                    delay={0}
                 />
                 <StatCard
                     icon={HiOutlineCalendar}
                     label="This Month"
                     value={`₹${(analytics?.thisMonth || 0).toLocaleString()}`}
-                    color="accent"
-                    delay={100}
+                    color="primary"
                 />
                 <StatCard
                     icon={HiOutlineTrendingUp}
                     label="Avg per Expense"
                     value={`₹${Math.round(analytics?.avgAmount || 0).toLocaleString()}`}
-                    color="warning"
-                    delay={200}
+                    color="primary"
                 />
                 <StatCard
                     icon={HiOutlineChartBar}
                     label="Top Category"
                     value={topCategory}
-                    color="danger"
-                    delay={300}
+                    color="primary"
                 />
             </div>
 
             {/* Charts Row */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Monthly Spending Chart */}
-                <div className="lg:col-span-2 glass-card p-5">
-                    <h3 className="text-base font-bold text-dark-800 dark:text-dark-200 mb-4">Monthly Spending</h3>
-                    <div className="h-72">
+                <motion.div variants={itemVariants} className="lg:col-span-2 glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
+                    <h3 className="text-lg font-extrabold text-slate-800 mb-6 tracking-tight">Monthly Spending</h3>
+                    <div className="h-80">
                         {monthlyData.length > 0 ? (
                             <ResponsiveContainer width="100%" height="100%">
                                 <AreaChart data={monthlyData}>
                                     <defs>
                                         <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3} />
-                                            <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                                            <stop offset="5%" stopColor="#a855f7" stopOpacity={0.4} />
+                                            <stop offset="95%" stopColor="#a855f7" stopOpacity={0} />
                                         </linearGradient>
                                     </defs>
-                                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.3} />
-                                    <XAxis dataKey="name" tick={{ fontSize: 12 }} stroke="#94a3b8" />
-                                    <YAxis tick={{ fontSize: 12 }} stroke="#94a3b8" />
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                                    <XAxis dataKey="name" tick={{ fontSize: 12, fontWeight: 600 }} stroke="#94a3b8" axisLine={false} tickLine={false} dy={10} />
+                                    <YAxis tick={{ fontSize: 12, fontWeight: 600 }} stroke="#94a3b8" axisLine={false} tickLine={false} dx={-10} />
                                     <Tooltip content={<CustomTooltip />} />
                                     <Area
-                                        type="monotone" dataKey="amount" stroke="#6366f1" strokeWidth={2.5}
+                                        type="monotone" dataKey="amount" stroke="#9333ea" strokeWidth={4}
                                         fill="url(#colorAmount)" animationDuration={1500}
                                     />
                                 </AreaChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-dark-400 text-sm">
+                            <div className="flex items-center justify-center h-full text-slate-400 font-medium">
                                 No spending data yet. Add your first expense!
                             </div>
                         )}
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Category Pie Chart */}
-                <div className="glass-card p-5">
-                    <h3 className="text-base font-bold text-dark-800 dark:text-dark-200 mb-4">By Category</h3>
-                    <div className="h-72">
+                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
+                    <h3 className="text-lg font-extrabold text-slate-800 mb-6 tracking-tight">By Category</h3>
+                    <div className="h-80">
                         {categoryData.length > 0 ? (
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
                                     <Pie
-                                        data={categoryData} cx="50%" cy="45%" outerRadius={80} innerRadius={40}
-                                        paddingAngle={3} dataKey="value" animationDuration={1000}
+                                        data={categoryData} cx="50%" cy="50%" outerRadius={100} innerRadius={60}
+                                        paddingAngle={5} dataKey="value" animationDuration={1000} stroke="none"
                                     >
                                         {categoryData.map((_, i) => (
                                             <Cell key={i} fill={COLORS[i % COLORS.length]} />
                                         ))}
                                     </Pie>
                                     <Legend
-                                        verticalAlign="bottom" iconType="circle" iconSize={8}
-                                        formatter={(value) => <span className="text-xs text-dark-500 dark:text-dark-400">{value}</span>}
+                                        verticalAlign="bottom" iconType="circle" iconSize={10}
+                                        formatter={(value) => <span className="text-sm font-semibold text-slate-600">{value}</span>}
                                     />
                                     <Tooltip
                                         formatter={(v) => [`₹${v.toLocaleString()}`, 'Amount']}
-                                        contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}
+                                        contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', fontWeight: 'bold' }}
                                     />
                                 </PieChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-dark-400 text-sm">
+                            <div className="flex items-center justify-center h-full text-slate-400 font-medium">
                                 No data yet
                             </div>
                         )}
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             {/* Recent Expenses */}
-            <div className="glass-card p-5">
-                <h3 className="text-base font-bold text-dark-800 dark:text-dark-200 mb-4">Recent Expenses</h3>
+            <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
+                <h3 className="text-lg font-extrabold text-slate-800 mb-6 tracking-tight">Recent Expenses</h3>
                 {recentExpenses.length > 0 ? (
-                    <div className="space-y-2">
+                    <motion.div variants={containerVariants} className="space-y-3">
                         {recentExpenses.map(exp => (
-                            <div
+                            <motion.div
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.01, x: 5 }}
                                 key={exp._id}
-                                className="flex items-center justify-between p-3 rounded-xl
-                  hover:bg-dark-50 dark:hover:bg-dark-800/50 transition-colors"
+                                className="flex items-center justify-between p-4 rounded-2xl
+                  hover:bg-primary-50/50 transition-colors cursor-default border border-transparent hover:border-primary-100"
                             >
-                                <div className="flex items-center gap-3">
-                                    <div className="w-9 h-9 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
-                                        <span className="text-sm">{getCategoryEmoji(exp.category)}</span>
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center shadow-inner">
+                                        <span className="text-xl">{getCategoryEmoji(exp.category)}</span>
                                     </div>
                                     <div>
-                                        <p className="text-sm font-semibold text-dark-800 dark:text-dark-200">{exp.category}</p>
-                                        <p className="text-xs text-dark-400">{exp.description || 'No description'}</p>
+                                        <p className="text-base font-bold text-slate-800">{exp.category}</p>
+                                        <p className="text-sm text-slate-500 font-medium">{exp.description || 'No description'}</p>
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-sm font-bold text-dark-900 dark:text-dark-100">₹{exp.amount.toLocaleString()}</p>
-                                    <p className="text-xs text-dark-400">{new Date(exp.date).toLocaleDateString()}</p>
+                                    <p className="text-lg font-black text-slate-900">₹{exp.amount.toLocaleString()}</p>
+                                    <p className="text-sm text-slate-400 font-medium">{new Date(exp.date).toLocaleDateString()}</p>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 ) : (
-                    <p className="text-center text-dark-400 text-sm py-8">No expenses recorded yet</p>
+                    <p className="text-center text-slate-400 font-medium py-8">No expenses recorded yet</p>
                 )}
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 };
 

@@ -1,10 +1,24 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import api from '../api/axios';
 import BudgetBar from '../components/BudgetBar';
 import { HiOutlinePlus, HiOutlineTrash, HiOutlineExclamation } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 
 const CATEGORIES = ['Food', 'Travel', 'Shopping', 'Bills', 'Entertainment', 'Health', 'Education', 'Other'];
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: { staggerChildren: 0.1 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+};
 
 const Budget = () => {
     const [budgetStatus, setBudgetStatus] = useState([]);
@@ -77,78 +91,85 @@ const Budget = () => {
     const totalSpent = budgetStatus.reduce((sum, b) => sum + b.spent, 0);
 
     return (
-        <div className="space-y-6 animate-fade-in">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="space-y-6"
+        >
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-dark-900 dark:text-dark-50">Budget</h2>
-                    <p className="text-sm text-dark-400 dark:text-dark-500 mt-1">Set limits and track your spending</p>
+                    <h2 className="text-4xl font-black text-slate-900 tracking-tight">Budget</h2>
+                    <p className="text-base text-slate-500 mt-2 font-medium">Set limits and track your spending</p>
                 </div>
                 <div className="flex items-center gap-3">
                     <input
                         type="month"
                         value={formData.month}
                         onChange={(e) => { setFormData(p => ({ ...p, month: e.target.value })); setLoading(true); }}
-                        className="px-4 py-2.5 rounded-xl border border-dark-200 dark:border-dark-600
-              bg-white dark:bg-dark-800 text-dark-900 dark:text-dark-100
+                        className="px-5 py-3 rounded-2xl border border-slate-200 font-bold
+              bg-white text-slate-900
+              focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-white
               outline-none transition-all text-sm"
                     />
                     <button
                         onClick={() => setShowForm(!showForm)}
-                        className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold
-              gradient-primary text-white hover:shadow-lg hover:shadow-primary-500/30 transition-all duration-300"
+                        className="flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold
+              bg-primary-500 text-white hover:bg-primary-600 hover:shadow-lg hover:-translate-y-0.5 hover:shadow-primary-500/30 transition-all duration-300"
                     >
-                        <HiOutlinePlus className="w-4 h-4" /> Set Budget
+                        <HiOutlinePlus className="w-5 h-5 text-white" /> Set Budget
                     </button>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Overspending Alert */}
             {overspentCount > 0 && (
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-danger-500/10 border border-danger-500/20 animate-slide-up">
-                    <div className="w-10 h-10 rounded-xl bg-danger-500/20 flex items-center justify-center shrink-0">
-                        <HiOutlineExclamation className="w-5 h-5 text-danger-500" />
+                <motion.div variants={itemVariants} className="flex items-center gap-4 p-5 rounded-2xl bg-danger-50 border border-danger-100 shadow-sm">
+                    <div className="w-12 h-12 rounded-xl bg-danger-100 flex items-center justify-center shrink-0">
+                        <HiOutlineExclamation className="w-6 h-6 text-danger-600" />
                     </div>
                     <div>
-                        <p className="text-sm font-semibold text-danger-600 dark:text-danger-400">
-                            ⚠️ Overspending Alert!
+                        <p className="text-base font-extrabold text-danger-700">
+                            Overspending Alert!
                         </p>
-                        <p className="text-xs text-danger-500/80">
+                        <p className="text-sm font-medium text-danger-600/80">
                             You've exceeded the budget limit in {overspentCount} {overspentCount === 1 ? 'category' : 'categories'} this month.
                         </p>
                     </div>
-                </div>
+                </motion.div>
             )}
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="glass-card p-5">
-                    <p className="text-sm text-dark-400 dark:text-dark-500 font-medium">Total Budget</p>
-                    <p className="text-2xl font-bold text-dark-900 dark:text-dark-100 mt-1">₹{totalBudget.toLocaleString()}</p>
-                </div>
-                <div className="glass-card p-5">
-                    <p className="text-sm text-dark-400 dark:text-dark-500 font-medium">Total Spent</p>
-                    <p className="text-2xl font-bold text-dark-900 dark:text-dark-100 mt-1">₹{totalSpent.toLocaleString()}</p>
-                </div>
-                <div className="glass-card p-5">
-                    <p className="text-sm text-dark-400 dark:text-dark-500 font-medium">Remaining</p>
-                    <p className={`text-2xl font-bold mt-1 ${totalBudget - totalSpent >= 0 ? 'text-accent-500' : 'text-danger-500'}`}>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
+                    <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Total Budget</p>
+                    <p className="text-3xl font-black text-slate-900 mt-2">₹{totalBudget.toLocaleString()}</p>
+                </motion.div>
+                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
+                    <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Total Spent</p>
+                    <p className="text-3xl font-black text-slate-900 mt-2">₹{totalSpent.toLocaleString()}</p>
+                </motion.div>
+                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
+                    <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Remaining</p>
+                    <p className={`text-3xl font-black mt-2 ${totalBudget - totalSpent >= 0 ? 'text-accent-600' : 'text-danger-600'}`}>
                         ₹{Math.abs(totalBudget - totalSpent).toLocaleString()}
                         {totalBudget - totalSpent < 0 && ' over'}
                     </p>
-                </div>
+                </motion.div>
             </div>
 
             {/* Add Budget Form */}
             {showForm && (
-                <div className="glass-card p-5 animate-scale-in">
-                    <h3 className="text-base font-bold text-dark-800 dark:text-dark-200 mb-4">Set Budget Limit</h3>
-                    <form onSubmit={handleSetBudget} className="flex flex-col sm:flex-row gap-3">
+                <motion.div variants={itemVariants} initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
+                    <h3 className="text-lg font-extrabold text-slate-800 mb-5">Set Budget Limit</h3>
+                    <form onSubmit={handleSetBudget} className="flex flex-col sm:flex-row gap-4">
                         <select
                             value={formData.category}
                             onChange={(e) => setFormData(p => ({ ...p, category: e.target.value }))}
-                            className="flex-1 px-4 py-2.5 rounded-xl border border-dark-200 dark:border-dark-600
-                bg-white dark:bg-dark-800 text-dark-900 dark:text-dark-100
-                outline-none transition-all text-sm"
+                            className="flex-1 px-5 py-3 rounded-2xl border border-slate-200 font-medium
+                bg-white text-slate-900
+                focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-slate-50
+                outline-none transition-all text-sm appearance-none"
                         >
                             {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                         </select>
@@ -159,51 +180,52 @@ const Budget = () => {
                             step="100"
                             value={formData.limit}
                             onChange={(e) => setFormData(p => ({ ...p, limit: e.target.value }))}
-                            className="flex-1 px-4 py-2.5 rounded-xl border border-dark-200 dark:border-dark-600
-                bg-white dark:bg-dark-800 text-dark-900 dark:text-dark-100
+                            className="flex-1 px-5 py-3 rounded-2xl border border-slate-200 font-medium
+                bg-white text-slate-900
+                focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-slate-50
                 outline-none transition-all text-sm"
                         />
                         <button
                             type="submit"
                             disabled={formLoading}
-                            className="px-6 py-2.5 rounded-xl gradient-primary text-white text-sm font-semibold
-                hover:shadow-lg hover:shadow-primary-500/30 transition-all
+                            className="px-8 py-3 rounded-2xl bg-primary-500 text-white text-sm font-bold
+                hover:shadow-lg hover:bg-primary-600 hover:-translate-y-0.5 hover:shadow-primary-500/30 transition-all
                 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {formLoading ? 'Saving...' : 'Save'}
                         </button>
                     </form>
-                </div>
+                </motion.div>
             )}
 
             {/* Budget Progress Bars */}
-            <div className="space-y-3">
+            <motion.div variants={containerVariants} className="space-y-4">
                 {loading ? (
                     <div className="flex justify-center py-16">
-                        <div className="w-10 h-10 border-4 border-primary-500 border-t-transparent rounded-full animate-spin" />
+                        <div className="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin" />
                     </div>
                 ) : budgetStatus.length === 0 ? (
-                    <div className="glass-card p-12 text-center">
-                        <p className="text-4xl mb-3">📊</p>
-                        <p className="text-dark-500 dark:text-dark-400 font-medium">No budgets set for this month</p>
-                        <p className="text-dark-400 dark:text-dark-500 text-sm mt-1">Click "Set Budget" to add spending limits</p>
-                    </div>
+                    <motion.div variants={itemVariants} className="glass-card p-16 text-center shadow-sm bg-white/80">
+                        <p className="text-5xl mb-4">📊</p>
+                        <p className="text-slate-500 font-bold text-lg">No budgets set for this month</p>
+                        <p className="text-slate-400 font-medium text-sm mt-2">Click "Set Budget" to add spending limits</p>
+                    </motion.div>
                 ) : (
-                    budgetStatus.map((b, i) => (
-                        <div key={b.category} className="relative group animate-slide-up" style={{ animationDelay: `${i * 80}ms` }}>
+                    budgetStatus.map((b) => (
+                        <motion.div key={b.category} variants={itemVariants} className="relative group">
                             <BudgetBar category={b.category} limit={b.limit} spent={b.spent} />
                             <button
                                 onClick={() => handleDeleteBudget(b.category)}
-                                className="absolute top-3 right-3 p-1.5 rounded-lg opacity-0 group-hover:opacity-100
-                  hover:bg-danger-50 dark:hover:bg-danger-500/10 transition-all"
+                                className="absolute top-4 right-4 p-2 rounded-xl opacity-0 group-hover:opacity-100
+                  hover:bg-danger-50 text-danger-400 hover:text-danger-600 transition-all"
                             >
-                                <HiOutlineTrash className="w-4 h-4 text-danger-400" />
+                                <HiOutlineTrash className="w-5 h-5" />
                             </button>
-                        </div>
+                        </motion.div>
                     ))
                 )}
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 };
 
