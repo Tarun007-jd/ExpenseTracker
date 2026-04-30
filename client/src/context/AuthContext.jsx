@@ -16,10 +16,12 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const initAuth = async () => {
+            let isValid = false;
             if (token) {
                 try {
                     const res = await api.get('/auth/me');
                     setUser(res.data.user);
+                    isValid = true;
                 } catch {
                     localStorage.removeItem('token');
                     localStorage.removeItem('user');
@@ -27,10 +29,28 @@ export const AuthProvider = ({ children }) => {
                     setUser(null);
                 }
             }
+
+            // Auto-login bypass for development/deployment
+            if (!isValid) {
+                try {
+                    const res = await api.post('/auth/login', { 
+                        email: 'developer@example.com', 
+                        password: 'bypass' 
+                    });
+                    const { token: newToken, user: userData } = res.data;
+                    localStorage.setItem('token', newToken);
+                    localStorage.setItem('user', JSON.stringify(userData));
+                    setToken(newToken);
+                    setUser(userData);
+                } catch (err) {
+                    console.error("Auto login bypass failed:", err);
+                }
+            }
+            
             setLoading(false);
         };
         initAuth();
-    }, [token]);
+    }, []);
 
     const login = async (email, password) => {
         const res = await api.post('/auth/login', { email, password });

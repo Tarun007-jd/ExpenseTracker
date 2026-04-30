@@ -14,14 +14,17 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-// Handle 401 responses globally
 api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response?.status === 401) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-            window.location.href = '/login';
+            // We do not redirect to /login because the auth page is removed.
+            // A page refresh will trigger the auto-login bypass.
+            if (window.location.pathname !== '/') {
+                window.location.href = '/';
+            }
         }
         return Promise.reject(error);
     }

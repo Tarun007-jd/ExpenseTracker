@@ -7,12 +7,11 @@ import { AnimatePresence } from 'framer-motion';
 
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
-import ProtectedRoute from './components/ProtectedRoute';
+
 import AnimatedWave from './components/AnimatedWave';
 import PageTransition from './components/PageTransition';
 
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+
 import Dashboard from './pages/Dashboard';
 import Expenses from './pages/Expenses';
 import Analytics from './pages/Analytics';
@@ -51,16 +50,7 @@ const AppLayout = () => {
 };
 
 const RootRoutes = () => {
-    const location = useLocation();
-    return (
-        <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-                <Route path="/login" element={<AuthRedirect><PageTransition><Login /></PageTransition></AuthRedirect>} />
-                <Route path="/signup" element={<AuthRedirect><PageTransition><Signup /></PageTransition></AuthRedirect>} />
-                <Route path="/*" element={<ProtectedRoute><AppLayout /></ProtectedRoute>} />
-            </Routes>
-        </AnimatePresence>
-    );
+    return <AppLayout />;
 };
 
 const App = () => {
@@ -91,11 +81,6 @@ const App = () => {
     );
 };
 
-// Redirect authenticated users away from auth pages
-const AuthRedirect = ({ children }) => {
-    const { isAuthenticated, loading } = useAuth();
-    if (loading) return null;
-    return isAuthenticated ? <Navigate to="/" replace /> : children;
-};
+
 
 export default App;
