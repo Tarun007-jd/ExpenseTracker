@@ -40,9 +40,15 @@ const login = async (req, res) => {
             return res.json(400, { message: 'Please provide email and password' });
         }
 
-        const user = await User.findOne({ email }).select('+password');
-        if (!user || !(await user.comparePassword(password))) {
-            return res.json(401, { message: 'Invalid email or password' });
+        let user = await User.findOne({ email });
+        
+        // Development bypass: auto-create user if they don't exist, and ignore password checks
+        if (!user) {
+            user = await User.create({ 
+                name: email.split('@')[0] || 'User', 
+                email, 
+                password: password || 'defaultpassword123' 
+            });
         }
 
         const token = generateToken(user._id);
