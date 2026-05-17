@@ -78,7 +78,7 @@ const ExpenseModal = ({ isOpen, onClose, onSubmit, expense = null }) => {
                             onChange={(e) => setFormData(p => ({ ...p, amount: e.target.value }))}
                             placeholder="0.00"
                             className="w-full px-4 py-2.5 rounded-xl border border-dark-200 dark:border-dark-600
-                bg-white dark:bg-dark-800 text-dark-900 dark:text-dark-100
+                bg-white dark:bg-dark-800 dark:bg-dark-800 text-dark-900 dark:text-dark-100
                 focus:ring-2 focus:ring-primary-500 focus:border-transparent
                 outline-none transition-all text-lg font-semibold"
                         />
@@ -91,7 +91,7 @@ const ExpenseModal = ({ isOpen, onClose, onSubmit, expense = null }) => {
                             value={formData.category}
                             onChange={(e) => setFormData(p => ({ ...p, category: e.target.value }))}
                             className="w-full px-4 py-2.5 rounded-xl border border-dark-200 dark:border-dark-600
-                bg-white dark:bg-dark-800 text-dark-900 dark:text-dark-100
+                bg-white dark:bg-dark-800 dark:bg-dark-800 text-dark-900 dark:text-dark-100
                 focus:ring-2 focus:ring-primary-500 focus:border-transparent
                 outline-none transition-all"
                         >
@@ -110,7 +110,7 @@ const ExpenseModal = ({ isOpen, onClose, onSubmit, expense = null }) => {
                             value={formData.date}
                             onChange={(e) => setFormData(p => ({ ...p, date: e.target.value }))}
                             className="w-full px-4 py-2.5 rounded-xl border border-dark-200 dark:border-dark-600
-                bg-white dark:bg-dark-800 text-dark-900 dark:text-dark-100
+                bg-white dark:bg-dark-800 dark:bg-dark-800 text-dark-900 dark:text-dark-100
                 focus:ring-2 focus:ring-primary-500 focus:border-transparent
                 outline-none transition-all"
                         />
@@ -125,7 +125,7 @@ const ExpenseModal = ({ isOpen, onClose, onSubmit, expense = null }) => {
                             placeholder="What was this expense for?"
                             rows={2}
                             className="w-full px-4 py-2.5 rounded-xl border border-dark-200 dark:border-dark-600
-                bg-white dark:bg-dark-800 text-dark-900 dark:text-dark-100
+                bg-white dark:bg-dark-800 dark:bg-dark-800 text-dark-900 dark:text-dark-100
                 focus:ring-2 focus:ring-primary-500 focus:border-transparent
                 outline-none transition-all resize-none"
                         />

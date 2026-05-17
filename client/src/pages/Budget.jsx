@@ -99,16 +99,16 @@ const Budget = () => {
         >
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h2 className="text-4xl font-black text-slate-900 tracking-tight">Budget</h2>
-                    <p className="text-base text-slate-500 mt-2 font-medium">Set limits and track your spending</p>
+                    <h2 className="text-4xl font-black text-slate-900 dark:text-slate-100 tracking-tight">Budget</h2>
+                    <p className="text-base text-slate-500 dark:text-slate-400 mt-2 font-medium">Set limits and track your spending</p>
                 </div>
                 <div className="flex items-center gap-3">
                     <input
                         type="month"
                         value={formData.month}
                         onChange={(e) => { setFormData(p => ({ ...p, month: e.target.value })); setLoading(true); }}
-                        className="px-5 py-3 rounded-2xl border border-slate-200 font-bold
-              bg-white text-slate-900
+                        className="px-5 py-3 rounded-2xl border border-slate-200 dark:border-dark-700 font-bold
+              bg-white dark:bg-dark-800 text-slate-900 dark:text-slate-100
               focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-white
               outline-none transition-all text-sm"
                     />
@@ -141,16 +141,16 @@ const Budget = () => {
 
             {/* Summary Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
-                    <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Total Budget</p>
-                    <p className="text-3xl font-black text-slate-900 mt-2">₹{totalBudget.toLocaleString()}</p>
+                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Total Budget</p>
+                    <p className="text-3xl font-black text-slate-900 dark:text-slate-100 mt-2">₹{totalBudget.toLocaleString()}</p>
                 </motion.div>
-                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
-                    <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Total Spent</p>
-                    <p className="text-3xl font-black text-slate-900 mt-2">₹{totalSpent.toLocaleString()}</p>
+                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Total Spent</p>
+                    <p className="text-3xl font-black text-slate-900 dark:text-slate-100 mt-2">₹{totalSpent.toLocaleString()}</p>
                 </motion.div>
-                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
-                    <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Remaining</p>
+                <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Remaining</p>
                     <p className={`text-3xl font-black mt-2 ${totalBudget - totalSpent >= 0 ? 'text-accent-600' : 'text-danger-600'}`}>
                         ₹{Math.abs(totalBudget - totalSpent).toLocaleString()}
                         {totalBudget - totalSpent < 0 && ' over'}
@@ -160,14 +160,14 @@ const Budget = () => {
 
             {/* Add Budget Form */}
             {showForm && (
-                <motion.div variants={itemVariants} initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="glass-card p-6 shadow-sm bg-white/80 backdrop-blur-xl">
-                    <h3 className="text-lg font-extrabold text-slate-800 mb-5">Set Budget Limit</h3>
+                <motion.div variants={itemVariants} initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
+                    <h3 className="text-lg font-extrabold text-slate-800 dark:text-slate-200 mb-5">Set Budget Limit</h3>
                     <form onSubmit={handleSetBudget} className="flex flex-col sm:flex-row gap-4">
                         <select
                             value={formData.category}
                             onChange={(e) => setFormData(p => ({ ...p, category: e.target.value }))}
-                            className="flex-1 px-5 py-3 rounded-2xl border border-slate-200 font-medium
-                bg-white text-slate-900
+                            className="flex-1 px-5 py-3 rounded-2xl border border-slate-200 dark:border-dark-700 font-medium
+                bg-white dark:bg-dark-800 text-slate-900 dark:text-slate-100
                 focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-slate-50
                 outline-none transition-all text-sm appearance-none"
                         >
@@ -180,8 +180,8 @@ const Budget = () => {
                             step="100"
                             value={formData.limit}
                             onChange={(e) => setFormData(p => ({ ...p, limit: e.target.value }))}
-                            className="flex-1 px-5 py-3 rounded-2xl border border-slate-200 font-medium
-                bg-white text-slate-900
+                            className="flex-1 px-5 py-3 rounded-2xl border border-slate-200 dark:border-dark-700 font-medium
+                bg-white dark:bg-dark-800 text-slate-900 dark:text-slate-100
                 focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-slate-50
                 outline-none transition-all text-sm"
                         />
@@ -205,10 +205,10 @@ const Budget = () => {
                         <div className="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin" />
                     </div>
                 ) : budgetStatus.length === 0 ? (
-                    <motion.div variants={itemVariants} className="glass-card p-16 text-center shadow-sm bg-white/80">
+                    <motion.div variants={itemVariants} className="glass-card p-16 text-center shadow-sm bg-white/80 dark:bg-dark-800/80">
                         <p className="text-5xl mb-4">📊</p>
-                        <p className="text-slate-500 font-bold text-lg">No budgets set for this month</p>
-                        <p className="text-slate-400 font-medium text-sm mt-2">Click "Set Budget" to add spending limits</p>
+                        <p className="text-slate-500 dark:text-slate-400 font-bold text-lg">No budgets set for this month</p>
+                        <p className="text-slate-400 dark:text-slate-500 font-medium text-sm mt-2">Click "Set Budget" to add spending limits</p>
                     </motion.div>
                 ) : (
                     budgetStatus.map((b) => (

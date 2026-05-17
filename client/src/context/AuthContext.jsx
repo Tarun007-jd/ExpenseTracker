@@ -30,22 +30,7 @@ export const AuthProvider = ({ children }) => {
                 }
             }
 
-            // Auto-login bypass for development/deployment
-            if (!isValid) {
-                try {
-                    const res = await api.post('/auth/login', { 
-                        email: 'developer@example.com', 
-                        password: 'bypass' 
-                    });
-                    const { token: newToken, user: userData } = res.data;
-                    localStorage.setItem('token', newToken);
-                    localStorage.setItem('user', JSON.stringify(userData));
-                    setToken(newToken);
-                    setUser(userData);
-                } catch (err) {
-                    console.error("Auto login bypass failed:", err);
-                }
-            }
+
             
             setLoading(false);
         };

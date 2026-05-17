@@ -18,7 +18,7 @@ const StatCard = ({ icon: Icon, label, value, trend, trendUp, color = 'primary' 
             variants={itemVariants}
             whileHover={{ y: -5, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="glass-card p-6 border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl bg-white/80"
+            className="glass-card p-6 border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl bg-white/80 dark:bg-dark-800/80"
         >
             <div className="flex items-start justify-between mb-4">
                 <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${colorMap[color]} shadow-lg flex items-center justify-center`}>
@@ -33,8 +33,8 @@ const StatCard = ({ icon: Icon, label, value, trend, trendUp, color = 'primary' 
                     </span>
                 )}
             </div>
-            <p className="text-3xl font-extrabold text-slate-900 tracking-tight">{value}</p>
-            <p className="text-sm text-slate-500 mt-1 font-semibold uppercase tracking-wider">{label}</p>
+            <p className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">{value}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-semibold uppercase tracking-wider">{label}</p>
         </motion.div>
     );
 };

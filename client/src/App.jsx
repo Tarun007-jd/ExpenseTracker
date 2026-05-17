@@ -11,11 +11,14 @@ import Navbar from './components/Navbar';
 import AnimatedWave from './components/AnimatedWave';
 import PageTransition from './components/PageTransition';
 
+import ProtectedRoute from './components/ProtectedRoute';
 
 import Dashboard from './pages/Dashboard';
 import Expenses from './pages/Expenses';
 import Analytics from './pages/Analytics';
 import Budget from './pages/Budget';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -50,7 +53,17 @@ const AppLayout = () => {
 };
 
 const RootRoutes = () => {
-    return <AppLayout />;
+    return (
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/*" element={
+                <ProtectedRoute>
+                    <AppLayout />
+                </ProtectedRoute>
+            } />
+        </Routes>
+    );
 };
 
 const App = () => {

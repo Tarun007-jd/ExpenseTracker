@@ -20,10 +20,8 @@ api.interceptors.response.use(
         if (error.response?.status === 401) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-            // We do not redirect to /login because the auth page is removed.
-            // A page refresh will trigger the auto-login bypass.
-            if (window.location.pathname !== '/') {
-                window.location.href = '/';
+            if (window.location.pathname !== '/login' && window.location.pathname !== '/signup') {
+                window.location.href = '/login';
             }
         }
         return Promise.reject(error);
