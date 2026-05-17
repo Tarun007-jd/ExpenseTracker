@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import expenseIcon from '../assets/JD expense Icon.png';
 import { HiOutlineMail, HiOutlineLockClosed, HiOutlineUser, HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 
@@ -61,7 +62,7 @@ const Signup = () => {
                         transition={{ type: "spring", stiffness: 200, damping: 15 }}
                         className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-lg"
                     >
-                        <span className="text-3xl font-bold">ET</span>
+                        <img src={expenseIcon} alt="ExpenseTracker" className="w-12 h-12 object-contain" />
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -94,7 +95,7 @@ const Signup = () => {
                     {/* Mobile logo */}
                     <motion.div variants={itemVariants} className="lg:hidden text-center mb-8">
                         <div className="w-14 h-14 mx-auto gradient-primary rounded-2xl flex items-center justify-center mb-3 shadow-lg shadow-primary-500/30">
-                            <span className="text-white text-xl font-bold">ET</span>
+                            <img src={expenseIcon} alt="ExpenseTracker" className="w-8 h-8 object-contain" />
                         </div>
                         <h2 className="text-2xl font-bold text-dark-900 dark:text-dark-100">ExpenseTracker</h2>
                     </motion.div>

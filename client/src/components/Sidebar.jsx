@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import expenseIcon from '../assets/JD expense Icon.png';
 import {
     HiOutlineViewGrid,
     HiOutlineCash,
@@ -41,7 +42,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 <div className="p-6 border-b border-dark-200 dark:border-dark-700 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 shadow-lg shadow-primary-500/30 rounded-xl flex items-center justify-center">
-                            <span className="text-white font-black text-sm tracking-widest">ET</span>
+                            <img src={expenseIcon} alt="ExpenseTracker" className="w-6 h-6 object-contain" />
                         </div>
                         <div>
                             <h1 className="text-lg font-black text-dark-900 dark:text-dark-100 tracking-tight">ExpenseTracker</h1>
