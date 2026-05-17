@@ -55,9 +55,9 @@ const Login = () => {
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                        className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-lg"
+                        className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shadow-lg overflow-hidden"
                     >
-                        <img src={expenseIcon} alt="ExpenseTracker" className="w-12 h-12 object-contain" />
+                        <img src={expenseIcon} alt="ExpenseTracker" className="w-full h-full object-cover rounded-full" />
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -89,8 +89,8 @@ const Login = () => {
                 >
                     {/* Mobile logo */}
                     <motion.div variants={itemVariants} className="lg:hidden text-center mb-8">
-                        <div className="w-14 h-14 mx-auto gradient-primary rounded-2xl flex items-center justify-center mb-3 shadow-lg shadow-primary-500/30">
-                            <img src={expenseIcon} alt="ExpenseTracker" className="w-8 h-8 object-contain" />
+                        <div className="w-14 h-14 mx-auto gradient-primary rounded-full flex items-center justify-center mb-3 shadow-lg shadow-primary-500/30 overflow-hidden p-1">
+                            <img src={expenseIcon} alt="ExpenseTracker" className="w-full h-full object-cover rounded-full" />
                         </div>
                         <h2 className="text-2xl font-bold text-dark-900 dark:text-dark-100">ExpenseTracker</h2>
                     </motion.div>
