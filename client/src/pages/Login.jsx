@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import expenseIcon from '../assets/jd_icon.png';
 import { HiOutlineMail, HiOutlineLockClosed, HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
@@ -24,6 +24,9 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [showForgotModal, setShowForgotModal] = useState(false);
+    const [resetEmail, setResetEmail] = useState('');
+    const [resetLoading, setResetLoading] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
 
@@ -38,6 +41,26 @@ const Login = () => {
             toast.error(err.response?.data?.message || 'Login failed');
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleForgotPassword = async (e) => {
+        e.preventDefault();
+        if (!resetEmail) {
+            toast.error('Please enter your email address');
+            return;
+        }
+        setResetLoading(true);
+        try {
+            // Mocking a network request
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            toast.success('Password reset link sent to your email!');
+            setShowForgotModal(false);
+            setResetEmail('');
+        } catch (error) {
+            toast.error('Failed to send reset link');
+        } finally {
+            setResetLoading(false);
         }
     };
 
@@ -123,6 +146,7 @@ const Login = () => {
                                     <label className="block text-sm font-bold text-dark-700 dark:text-dark-300 uppercase tracking-wider">Password</label>
                                     <button
                                         type="button"
+                                        onClick={() => setShowForgotModal(true)}
                                         className="text-xs font-bold text-primary-500 hover:text-primary-600 transition-colors"
                                     >
                                         Forgot?
@@ -178,6 +202,66 @@ const Login = () => {
                     </motion.div>
                 </motion.div>
             </div>
+
+            {/* Forgot Password Modal */}
+            <AnimatePresence>
+                {showForgotModal && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-dark-950/60 backdrop-blur-sm p-4"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.95, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.95, opacity: 0 }}
+                            className="w-full max-w-md bg-white dark:bg-dark-900 rounded-2xl shadow-2xl overflow-hidden border border-dark-200 dark:border-dark-800"
+                        >
+                            <div className="p-8">
+                                <h2 className="text-2xl font-bold text-dark-900 dark:text-dark-100 mb-2">Reset Password</h2>
+                                <p className="text-dark-700 dark:text-dark-400 text-sm mb-6">
+                                    Enter the email address associated with your account and we'll send you a link to reset your password.
+                                </p>
+                                <form onSubmit={handleForgotPassword} className="space-y-5">
+                                    <div>
+                                        <label className="block text-sm font-bold text-dark-700 dark:text-dark-300 mb-1.5 uppercase tracking-wider">Email</label>
+                                        <div className="relative group">
+                                            <HiOutlineMail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-500 dark:text-dark-400 group-focus-within:text-primary-500 transition-colors" />
+                                            <input
+                                                type="email"
+                                                required
+                                                value={resetEmail}
+                                                onChange={(e) => setResetEmail(e.target.value)}
+                                                placeholder="you@example.com"
+                                                className="w-full pl-11 pr-4 py-3 rounded-xl border border-dark-200 dark:border-dark-600
+                                bg-dark-50 dark:bg-dark-800 text-dark-900 dark:text-dark-100 font-medium
+                                focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-3 pt-2">
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowForgotModal(false)}
+                                            className="flex-1 py-3 rounded-xl font-bold text-dark-700 dark:text-dark-300 bg-dark-100 dark:bg-dark-800 hover:bg-dark-200 dark:hover:bg-dark-700 transition-colors"
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            disabled={resetLoading}
+                                            className="flex-1 py-3 rounded-xl gradient-primary text-white font-bold hover:shadow-lg hover:shadow-primary-500/30 transition-all disabled:opacity-50"
+                                        >
+                                            {resetLoading ? 'Sending...' : 'Send Link'}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
