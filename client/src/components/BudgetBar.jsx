@@ -10,7 +10,7 @@ const BudgetBar = ({ category, limit, spent }) => {
     return (
         <div className="glass-card p-4">
             <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-semibold text-dark-800 dark:text-dark-200">{category}</span>
+                <span className="text-sm font-semibold text-dark-900 dark:text-dark-200">{category}</span>
                 <span className={`text-xs font-bold px-2 py-0.5 rounded-lg ${overspent
                         ? 'text-danger-600 bg-danger-500/10 dark:text-danger-400'
                         : 'text-accent-600 bg-accent-500/10 dark:text-accent-400'
@@ -24,7 +24,7 @@ const BudgetBar = ({ category, limit, spent }) => {
                     style={{ width: `${percentage}%` }}
                 />
             </div>
-            <div className="flex justify-between mt-1.5 text-xs text-dark-400 dark:text-dark-500">
+            <div className="flex justify-between mt-1.5 text-xs text-dark-600 dark:text-dark-500">
                 <span>₹{spent.toLocaleString()} spent</span>
                 <span>₹{limit.toLocaleString()} limit</span>
             </div>

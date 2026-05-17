@@ -64,7 +64,7 @@ const Analytics = () => {
         <div className="space-y-6 animate-fade-in">
             <div>
                 <h2 className="text-2xl font-bold text-dark-900 dark:text-dark-50">Analytics</h2>
-                <p className="text-sm text-dark-400 dark:text-dark-500 mt-1">Insights into your spending patterns</p>
+                <p className="text-sm text-dark-600 dark:text-dark-500 mt-1">Insights into your spending patterns</p>
             </div>
 
             {/* Insight Cards */}
@@ -77,12 +77,12 @@ const Analytics = () => {
                                 ? <HiOutlineTrendingUp className="w-5 h-5 text-danger-500" />
                                 : <HiOutlineTrendingDown className="w-5 h-5 text-accent-500" />}
                         </div>
-                        <span className="text-sm font-medium text-dark-500 dark:text-dark-400">Spending Trend</span>
+                        <span className="text-sm font-medium text-dark-700 dark:text-dark-400">Spending Trend</span>
                     </div>
                     <p className="text-xl font-bold text-dark-900 dark:text-dark-100">
                         {trendDirection === 'up' ? 'Increasing' : trendDirection === 'down' ? 'Decreasing' : 'Stable'}
                     </p>
-                    <p className="text-xs text-dark-400 mt-1">vs last month</p>
+                    <p className="text-xs text-dark-600 mt-1">vs last month</p>
                 </div>
 
                 <div className="glass-card p-5 animate-slide-up" style={{ animationDelay: '100ms' }}>
@@ -90,10 +90,10 @@ const Analytics = () => {
                         <div className="w-9 h-9 rounded-xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
                             <HiOutlineEmojiHappy className="w-5 h-5 text-primary-500" />
                         </div>
-                        <span className="text-sm font-medium text-dark-500 dark:text-dark-400">Daily Average</span>
+                        <span className="text-sm font-medium text-dark-700 dark:text-dark-400">Daily Average</span>
                     </div>
                     <p className="text-xl font-bold text-dark-900 dark:text-dark-100">₹{dailyAvg.toLocaleString()}</p>
-                    <p className="text-xs text-dark-400 mt-1">this month</p>
+                    <p className="text-xs text-dark-600 mt-1">this month</p>
                 </div>
 
                 <div className="glass-card p-5 animate-slide-up" style={{ animationDelay: '200ms' }}>
@@ -101,10 +101,10 @@ const Analytics = () => {
                         <div className="w-9 h-9 rounded-xl bg-warning-100 dark:bg-warning-500/20 flex items-center justify-center">
                             <span className="text-lg">{topCategory ? getCategoryEmoji(topCategory.name) : '📦'}</span>
                         </div>
-                        <span className="text-sm font-medium text-dark-500 dark:text-dark-400">Biggest Category</span>
+                        <span className="text-sm font-medium text-dark-700 dark:text-dark-400">Biggest Category</span>
                     </div>
                     <p className="text-xl font-bold text-dark-900 dark:text-dark-100">{topCategory?.name || '-'}</p>
-                    <p className="text-xs text-dark-400 mt-1">₹{(topCategory?.value || 0).toLocaleString()}</p>
+                    <p className="text-xs text-dark-600 mt-1">₹{(topCategory?.value || 0).toLocaleString()}</p>
                 </div>
             </div>
 
@@ -112,7 +112,7 @@ const Analytics = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {/* Category Pie Chart */}
                 <div className="glass-card p-5">
-                    <h3 className="text-base font-bold text-dark-800 dark:text-dark-200 mb-4">Category Distribution</h3>
+                    <h3 className="text-base font-bold text-dark-900 dark:text-dark-200 mb-4">Category Distribution</h3>
                     <div className="h-80">
                         {categoryData.length > 0 ? (
                             <ResponsiveContainer width="100%" height="100%">
@@ -132,19 +132,19 @@ const Analytics = () => {
                                         contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}
                                     />
                                     <Legend iconType="circle" iconSize={8}
-                                        formatter={(value) => <span className="text-xs text-dark-500 dark:text-dark-400">{value}</span>}
+                                        formatter={(value) => <span className="text-xs text-dark-700 dark:text-dark-400">{value}</span>}
                                     />
                                 </PieChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-dark-400 text-sm">No data yet</div>
+                            <div className="flex items-center justify-center h-full text-dark-600 text-sm">No data yet</div>
                         )}
                     </div>
                 </div>
 
                 {/* Monthly Trend */}
                 <div className="glass-card p-5">
-                    <h3 className="text-base font-bold text-dark-800 dark:text-dark-200 mb-4">Monthly Spending Trend</h3>
+                    <h3 className="text-base font-bold text-dark-900 dark:text-dark-200 mb-4">Monthly Spending Trend</h3>
                     <div className="h-80">
                         {monthlyData.length > 0 ? (
                             <ResponsiveContainer width="100%" height="100%">
@@ -167,7 +167,7 @@ const Analytics = () => {
                                 </AreaChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-dark-400 text-sm">No data yet</div>
+                            <div className="flex items-center justify-center h-full text-dark-600 text-sm">No data yet</div>
                         )}
                     </div>
                 </div>
@@ -175,7 +175,7 @@ const Analytics = () => {
 
             {/* Category Breakdown Bar Chart */}
             <div className="glass-card p-5">
-                <h3 className="text-base font-bold text-dark-800 dark:text-dark-200 mb-4">Category Breakdown</h3>
+                <h3 className="text-base font-bold text-dark-900 dark:text-dark-200 mb-4">Category Breakdown</h3>
                 <div className="h-64">
                     {categoryData.length > 0 ? (
                         <ResponsiveContainer width="100%" height="100%">
@@ -195,7 +195,7 @@ const Analytics = () => {
                             </BarChart>
                         </ResponsiveContainer>
                     ) : (
-                        <div className="flex items-center justify-center h-full text-dark-400 text-sm">No data yet</div>
+                        <div className="flex items-center justify-center h-full text-dark-600 text-sm">No data yet</div>
                     )}
                 </div>
             </div>
@@ -204,12 +204,12 @@ const Analytics = () => {
             <div className="glass-card p-5">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h3 className="text-base font-bold text-dark-800 dark:text-dark-200">Monthly Average</h3>
-                        <p className="text-sm text-dark-400 mt-1">Based on the last {monthlyData.length} months</p>
+                        <h3 className="text-base font-bold text-dark-900 dark:text-dark-200">Monthly Average</h3>
+                        <p className="text-sm text-dark-600 mt-1">Based on the last {monthlyData.length} months</p>
                     </div>
                     <div className="text-right">
                         <p className="text-3xl font-bold text-gradient">₹{monthlyAvg.toLocaleString()}</p>
-                        <p className="text-xs text-dark-400 mt-1">per month</p>
+                        <p className="text-xs text-dark-600 mt-1">per month</p>
                     </div>
                 </div>
             </div>

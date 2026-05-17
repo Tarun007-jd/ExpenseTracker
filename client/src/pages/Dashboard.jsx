@@ -70,7 +70,7 @@ const Dashboard = () => {
         if (active && payload && payload.length) {
             return (
                 <div className="glass-card p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] !rounded-xl text-sm border-none bg-white/90 dark:bg-dark-800/90 backdrop-blur-md">
-                    <p className="font-extrabold text-slate-800 dark:text-slate-200">{label}</p>
+                    <p className="font-extrabold text-slate-900 dark:text-slate-200">{label}</p>
                     <p className="text-primary-600 font-black text-lg">₹{payload[0].value.toLocaleString()}</p>
                 </div>
             );
@@ -87,7 +87,7 @@ const Dashboard = () => {
         >
             <motion.div variants={itemVariants}>
                 <h2 className="text-4xl font-black text-slate-900 dark:text-slate-100 tracking-tight">Dashboard</h2>
-                <p className="text-base text-slate-500 dark:text-slate-400 mt-2 font-medium">An overview of your financial activity</p>
+                <p className="text-base text-slate-700 dark:text-slate-400 mt-2 font-medium">An overview of your financial activity</p>
             </motion.div>
 
             {/* Stats Grid */}
@@ -122,7 +122,7 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Monthly Spending Chart */}
                 <motion.div variants={itemVariants} className="lg:col-span-2 glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
-                    <h3 className="text-lg font-extrabold text-slate-800 dark:text-slate-200 mb-6 tracking-tight">Monthly Spending</h3>
+                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-200 mb-6 tracking-tight">Monthly Spending</h3>
                     <div className="h-80">
                         {monthlyData.length > 0 ? (
                             <ResponsiveContainer width="100%" height="100%">
@@ -144,7 +144,7 @@ const Dashboard = () => {
                                 </AreaChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-slate-400 dark:text-slate-500 font-medium">
+                            <div className="flex items-center justify-center h-full text-slate-600 dark:text-slate-500 font-medium">
                                 No spending data yet. Add your first expense!
                             </div>
                         )}
@@ -153,7 +153,7 @@ const Dashboard = () => {
 
                 {/* Category Pie Chart */}
                 <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
-                    <h3 className="text-lg font-extrabold text-slate-800 dark:text-slate-200 mb-6 tracking-tight">By Category</h3>
+                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-200 mb-6 tracking-tight">By Category</h3>
                     <div className="h-80">
                         {categoryData.length > 0 ? (
                             <ResponsiveContainer width="100%" height="100%">
@@ -168,7 +168,7 @@ const Dashboard = () => {
                                     </Pie>
                                     <Legend
                                         verticalAlign="bottom" iconType="circle" iconSize={10}
-                                        formatter={(value) => <span className="text-sm font-semibold text-slate-600 dark:text-slate-400">{value}</span>}
+                                        formatter={(value) => <span className="text-sm font-semibold text-slate-800 dark:text-slate-400">{value}</span>}
                                     />
                                     <Tooltip
                                         formatter={(v) => [`₹${v.toLocaleString()}`, 'Amount']}
@@ -177,7 +177,7 @@ const Dashboard = () => {
                                 </PieChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-slate-400 dark:text-slate-500 font-medium">
+                            <div className="flex items-center justify-center h-full text-slate-600 dark:text-slate-500 font-medium">
                                 No data yet
                             </div>
                         )}
@@ -187,7 +187,7 @@ const Dashboard = () => {
 
             {/* Recent Expenses */}
             <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
-                <h3 className="text-lg font-extrabold text-slate-800 dark:text-slate-200 mb-6 tracking-tight">Recent Expenses</h3>
+                <h3 className="text-lg font-extrabold text-slate-900 dark:text-slate-200 mb-6 tracking-tight">Recent Expenses</h3>
                 {recentExpenses.length > 0 ? (
                     <motion.div variants={containerVariants} className="space-y-3">
                         {recentExpenses.map(exp => (
@@ -203,19 +203,19 @@ const Dashboard = () => {
                                         <span className="text-xl">{getCategoryEmoji(exp.category)}</span>
                                     </div>
                                     <div>
-                                        <p className="text-base font-bold text-slate-800 dark:text-slate-200">{exp.category}</p>
-                                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{exp.description || 'No description'}</p>
+                                        <p className="text-base font-bold text-slate-900 dark:text-slate-200">{exp.category}</p>
+                                        <p className="text-sm text-slate-700 dark:text-slate-400 font-medium">{exp.description || 'No description'}</p>
                                     </div>
                                 </div>
                                 <div className="text-right">
                                     <p className="text-lg font-black text-slate-900 dark:text-slate-100">₹{exp.amount.toLocaleString()}</p>
-                                    <p className="text-sm text-slate-400 dark:text-slate-500 font-medium">{new Date(exp.date).toLocaleDateString()}</p>
+                                    <p className="text-sm text-slate-600 dark:text-slate-500 font-medium">{new Date(exp.date).toLocaleDateString()}</p>
                                 </div>
                             </motion.div>
                         ))}
                     </motion.div>
                 ) : (
-                    <p className="text-center text-slate-400 dark:text-slate-500 font-medium py-8">No expenses recorded yet</p>
+                    <p className="text-center text-slate-600 dark:text-slate-500 font-medium py-8">No expenses recorded yet</p>
                 )}
             </motion.div>
         </motion.div>

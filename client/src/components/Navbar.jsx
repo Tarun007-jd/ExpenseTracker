@@ -13,10 +13,10 @@ const Navbar = ({ onMenuClick }) => {
                         onClick={onMenuClick}
                         className="lg:hidden p-2 rounded-xl hover:bg-primary-50 transition-colors"
                     >
-                        <HiOutlineMenuAlt2 className="w-6 h-6 text-slate-700 dark:text-slate-300" />
+                        <HiOutlineMenuAlt2 className="w-6 h-6 text-slate-900 dark:text-slate-300" />
                     </button>
                     <div>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
+                        <p className="text-sm text-slate-700 dark:text-slate-400 font-medium">
                             Welcome back,
                         </p>
                         <p className="text-lg font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
@@ -28,7 +28,7 @@ const Navbar = ({ onMenuClick }) => {
                 {/* Right side */}
                 <div className="flex items-center gap-3">
                     <button className="p-2.5 rounded-xl hover:bg-primary-50 transition-colors relative group">
-                        <HiOutlineBell className="w-6 h-6 text-slate-600 dark:text-slate-400 group-hover:text-primary-600 transition-colors" />
+                        <HiOutlineBell className="w-6 h-6 text-slate-800 dark:text-slate-400 group-hover:text-primary-600 transition-colors" />
                         <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-danger-500 rounded-full border-2 border-white" />
                     </button>
                 </div>

@@ -61,14 +61,14 @@ const ExpenseModal = ({ isOpen, onClose, onSubmit, expense = null }) => {
                         onClick={onClose}
                         className="p-2 rounded-xl hover:bg-dark-100 dark:hover:bg-dark-700 transition-colors"
                     >
-                        <HiOutlineX className="w-5 h-5 text-dark-400" />
+                        <HiOutlineX className="w-5 h-5 text-dark-600" />
                     </button>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Amount */}
                     <div>
-                        <label className="block text-sm font-medium text-dark-600 dark:text-dark-400 mb-1.5">Amount (₹)</label>
+                        <label className="block text-sm font-medium text-dark-800 dark:text-dark-400 mb-1.5">Amount (₹)</label>
                         <input
                             type="number"
                             step="0.01"
@@ -86,7 +86,7 @@ const ExpenseModal = ({ isOpen, onClose, onSubmit, expense = null }) => {
 
                     {/* Category */}
                     <div>
-                        <label className="block text-sm font-medium text-dark-600 dark:text-dark-400 mb-1.5">Category</label>
+                        <label className="block text-sm font-medium text-dark-800 dark:text-dark-400 mb-1.5">Category</label>
                         <select
                             value={formData.category}
                             onChange={(e) => setFormData(p => ({ ...p, category: e.target.value }))}
@@ -103,7 +103,7 @@ const ExpenseModal = ({ isOpen, onClose, onSubmit, expense = null }) => {
 
                     {/* Date */}
                     <div>
-                        <label className="block text-sm font-medium text-dark-600 dark:text-dark-400 mb-1.5">Date</label>
+                        <label className="block text-sm font-medium text-dark-800 dark:text-dark-400 mb-1.5">Date</label>
                         <input
                             type="date"
                             required
@@ -118,7 +118,7 @@ const ExpenseModal = ({ isOpen, onClose, onSubmit, expense = null }) => {
 
                     {/* Description */}
                     <div>
-                        <label className="block text-sm font-medium text-dark-600 dark:text-dark-400 mb-1.5">Description</label>
+                        <label className="block text-sm font-medium text-dark-800 dark:text-dark-400 mb-1.5">Description</label>
                         <textarea
                             value={formData.description}
                             onChange={(e) => setFormData(p => ({ ...p, description: e.target.value }))}
