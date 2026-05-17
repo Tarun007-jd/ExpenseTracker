@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import expenseIcon from '../assets/JD expense Icon.png';
+import expenseIcon from '../assets/jd_icon.png';
 import { HiOutlineMail, HiOutlineLockClosed, HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 
@@ -57,7 +57,7 @@ const Login = () => {
                         transition={{ type: "spring", stiffness: 200, damping: 15 }}
                         className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shadow-lg overflow-hidden"
                     >
-                        <img src={expenseIcon} alt="ExpenseTracker" className="w-full h-full object-cover rounded-full" />
+                        <img src={expenseIcon} alt="JD Expense Tracker" className="w-full h-full object-cover rounded-full" />
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -90,9 +90,9 @@ const Login = () => {
                     {/* Mobile logo */}
                     <motion.div variants={itemVariants} className="lg:hidden text-center mb-8">
                         <div className="w-14 h-14 mx-auto gradient-primary rounded-full flex items-center justify-center mb-3 shadow-lg shadow-primary-500/30 overflow-hidden p-1">
-                            <img src={expenseIcon} alt="ExpenseTracker" className="w-full h-full object-cover rounded-full" />
+                            <img src={expenseIcon} alt="JD Expense Tracker" className="w-full h-full object-cover rounded-full" />
                         </div>
-                        <h2 className="text-2xl font-bold text-dark-900 dark:text-dark-100">ExpenseTracker</h2>
+                        <h2 className="text-2xl font-bold text-dark-900 dark:text-dark-100">JD Expense Tracker</h2>
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="glass-card p-8 lg:p-10">
