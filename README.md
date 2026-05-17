@@ -106,66 +106,6 @@ ExpenseTracker/
 
 ---
 
-## 🏁 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone <your-repo-url>
-cd ExpenseTracker
-```
-
-### 2. Configure environment variables
-
-```bash
-cp server/.env.example server/.env
-```
-
-Edit `server/.env`:
-
-```env
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/expense-tracker
-JWT_SECRET=your_super_secret_key_change_this
-```
-
-> **For MongoDB Atlas**, replace `MONGO_URI` with your connection string:
-> `mongodb+srv://username:password@cluster.mongodb.net/expense-tracker`
-
-### 3. Install dependencies
-
-```bash
-# Backend
-cd server
-npm install
-
-# Frontend
-cd ../client
-npm install
-```
-
-### 4. Run the application
-
-Open **two terminals**:
-
-```bash
-# Terminal 1 — Backend
-cd server
-npm start
-# → Server running on port 5000
-
-# Terminal 2 — Frontend
-cd client
-npm run dev
-# → http://localhost:5173
-```
-
-### 5. Open in browser
-
-Navigate to [http://localhost:5173](http://localhost:5173) — create an account and start tracking!
-
----
-
 ## 🔌 API Endpoints
 
 ### Authentication
@@ -195,16 +135,6 @@ Navigate to [http://localhost:5173](http://localhost:5173) — create an account
 | `POST` | `/api/budgets` | Set/update budget |
 | `DELETE` | `/api/budgets/:id` | Delete budget |
 | `GET` | `/api/budgets/status` | Spending vs limit status |
-
----
-
-## 📸 Screenshots
-
-> Add your screenshots here to showcase the application!
-
-| Dashboard | Analytics | Budget |
-|-----------|-----------|--------|
-| ![Dashboard](screenshots/dashboard.png) | ![Analytics](screenshots/analytics.png) | ![Budget](screenshots/budget.png) |
 
 ---
 
