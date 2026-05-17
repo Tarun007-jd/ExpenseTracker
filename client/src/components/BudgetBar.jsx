@@ -24,7 +24,7 @@ const BudgetBar = ({ category, limit, spent }) => {
                     style={{ width: `${percentage}%` }}
                 />
             </div>
-            <div className="flex justify-between mt-1.5 text-xs text-dark-600 dark:text-dark-500">
+            <div className="flex justify-between mt-1.5 text-xs text-dark-900 dark:text-dark-500">
                 <span>₹{spent.toLocaleString()} spent</span>
                 <span>₹{limit.toLocaleString()} limit</span>
             </div>

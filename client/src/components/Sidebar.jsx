@@ -48,7 +48,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                         </div>
                     </div>
                     <button onClick={onClose} className="lg:hidden p-2 rounded-xl hover:bg-slate-100 transition-colors">
-                        <HiOutlineX className="w-5 h-5 text-slate-700 dark:text-slate-400" />
+                        <HiOutlineX className="w-5 h-5 text-slate-900 dark:text-slate-400" />
                     </button>
                 </div>
 
@@ -64,7 +64,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                 className={`flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-300
                   ${isActive
                                         ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30 translate-x-1'
-                                        : 'text-slate-700 dark:text-slate-400 hover:bg-primary-50 hover:text-primary-600 hover:translate-x-1'
+                                        : 'text-slate-900 dark:text-slate-400 hover:bg-primary-50 hover:text-primary-600 hover:translate-x-1'
                                     }`}
                             >
                                 <item.icon className="w-6 h-6" />
@@ -80,7 +80,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                     <button
                         onClick={toggleTheme}
                         className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold
-              text-slate-700 dark:text-slate-400 hover:bg-slate-100 transition-all duration-200"
+              text-slate-900 dark:text-slate-400 hover:bg-slate-100 transition-all duration-200"
                     >
                         {isDark ? <HiOutlineSun className="w-6 h-6" /> : <HiOutlineMoon className="w-6 h-6" />}
                         {isDark ? 'Light Mode' : 'Dark Mode'}
@@ -93,7 +93,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                         </div>
                         <div className="flex-1 min-w-0">
                             <p className="text-sm font-extrabold text-slate-900 dark:text-slate-200 truncate">{user?.name}</p>
-                            <p className="text-xs text-slate-700 dark:text-slate-400 font-medium truncate">{user?.email}</p>
+                            <p className="text-xs text-slate-900 dark:text-slate-400 font-medium truncate">{user?.email}</p>
                         </div>
                     </div>
 

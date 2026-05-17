@@ -100,7 +100,7 @@ const Budget = () => {
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h2 className="text-4xl font-black text-slate-900 dark:text-slate-100 tracking-tight">Budget</h2>
-                    <p className="text-base text-slate-700 dark:text-slate-400 mt-2 font-medium">Set limits and track your spending</p>
+                    <p className="text-base text-slate-900 dark:text-slate-400 mt-2 font-medium">Set limits and track your spending</p>
                 </div>
                 <div className="flex items-center gap-3">
                     <input
@@ -142,15 +142,15 @@ const Budget = () => {
             {/* Summary Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
-                    <p className="text-sm text-slate-700 dark:text-slate-400 font-bold uppercase tracking-wider">Total Budget</p>
+                    <p className="text-sm text-slate-900 dark:text-slate-400 font-bold uppercase tracking-wider">Total Budget</p>
                     <p className="text-3xl font-black text-slate-900 dark:text-slate-100 mt-2">₹{totalBudget.toLocaleString()}</p>
                 </motion.div>
                 <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
-                    <p className="text-sm text-slate-700 dark:text-slate-400 font-bold uppercase tracking-wider">Total Spent</p>
+                    <p className="text-sm text-slate-900 dark:text-slate-400 font-bold uppercase tracking-wider">Total Spent</p>
                     <p className="text-3xl font-black text-slate-900 dark:text-slate-100 mt-2">₹{totalSpent.toLocaleString()}</p>
                 </motion.div>
                 <motion.div variants={itemVariants} className="glass-card p-6 shadow-sm bg-white/80 dark:bg-dark-800/80 backdrop-blur-xl">
-                    <p className="text-sm text-slate-700 dark:text-slate-400 font-bold uppercase tracking-wider">Remaining</p>
+                    <p className="text-sm text-slate-900 dark:text-slate-400 font-bold uppercase tracking-wider">Remaining</p>
                     <p className={`text-3xl font-black mt-2 ${totalBudget - totalSpent >= 0 ? 'text-accent-600' : 'text-danger-600'}`}>
                         ₹{Math.abs(totalBudget - totalSpent).toLocaleString()}
                         {totalBudget - totalSpent < 0 && ' over'}
@@ -207,8 +207,8 @@ const Budget = () => {
                 ) : budgetStatus.length === 0 ? (
                     <motion.div variants={itemVariants} className="glass-card p-16 text-center shadow-sm bg-white/80 dark:bg-dark-800/80">
                         <p className="text-5xl mb-4">📊</p>
-                        <p className="text-slate-700 dark:text-slate-400 font-bold text-lg">No budgets set for this month</p>
-                        <p className="text-slate-600 dark:text-slate-500 font-medium text-sm mt-2">Click "Set Budget" to add spending limits</p>
+                        <p className="text-slate-900 dark:text-slate-400 font-bold text-lg">No budgets set for this month</p>
+                        <p className="text-slate-900 dark:text-slate-500 font-medium text-sm mt-2">Click "Set Budget" to add spending limits</p>
                     </motion.div>
                 ) : (
                     budgetStatus.map((b) => (

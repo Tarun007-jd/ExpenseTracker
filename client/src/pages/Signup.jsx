@@ -62,13 +62,13 @@ const Signup = () => {
                     </div>
 
                     <h1 className="text-2xl font-bold text-dark-900 dark:text-dark-100 mb-1">Create account</h1>
-                    <p className="text-dark-600 dark:text-dark-500 mb-8 text-sm">Enter your details to get started</p>
+                    <p className="text-dark-900 dark:text-dark-500 mb-8 text-sm">Enter your details to get started</p>
 
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
-                            <label className="block text-sm font-medium text-dark-800 dark:text-dark-400 mb-1.5">Full Name</label>
+                            <label className="block text-sm font-medium text-dark-900 dark:text-dark-400 mb-1.5">Full Name</label>
                             <div className="relative">
-                                <HiOutlineUser className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-600" />
+                                <HiOutlineUser className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-900" />
                                 <input
                                     type="text"
                                     required
@@ -84,9 +84,9 @@ const Signup = () => {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-dark-800 dark:text-dark-400 mb-1.5">Email</label>
+                            <label className="block text-sm font-medium text-dark-900 dark:text-dark-400 mb-1.5">Email</label>
                             <div className="relative">
-                                <HiOutlineMail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-600" />
+                                <HiOutlineMail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-900" />
                                 <input
                                     type="email"
                                     required
@@ -102,9 +102,9 @@ const Signup = () => {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-dark-800 dark:text-dark-400 mb-1.5">Password</label>
+                            <label className="block text-sm font-medium text-dark-900 dark:text-dark-400 mb-1.5">Password</label>
                             <div className="relative">
-                                <HiOutlineLockClosed className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-600" />
+                                <HiOutlineLockClosed className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-900" />
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     required
@@ -119,7 +119,7 @@ const Signup = () => {
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-dark-600 hover:text-dark-600 transition-colors"
+                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-dark-900 hover:text-dark-600 transition-colors"
                                 >
                                     {showPassword ? <HiOutlineEyeOff className="w-5 h-5" /> : <HiOutlineEye className="w-5 h-5" />}
                                 </button>
@@ -137,7 +137,7 @@ const Signup = () => {
                         </button>
                     </form>
 
-                    <p className="text-center mt-6 text-sm text-dark-600 dark:text-dark-500">
+                    <p className="text-center mt-6 text-sm text-dark-900 dark:text-dark-500">
                         Already have an account?{' '}
                         <Link to="/login" className="text-primary-500 hover:text-primary-600 font-semibold transition-colors">
                             Sign In

@@ -87,7 +87,7 @@ const Dashboard = () => {
         >
             <motion.div variants={itemVariants}>
                 <h2 className="text-4xl font-black text-slate-900 dark:text-slate-100 tracking-tight">Dashboard</h2>
-                <p className="text-base text-slate-700 dark:text-slate-400 mt-2 font-medium">An overview of your financial activity</p>
+                <p className="text-base text-slate-900 dark:text-slate-400 mt-2 font-medium">An overview of your financial activity</p>
             </motion.div>
 
             {/* Stats Grid */}
@@ -144,7 +144,7 @@ const Dashboard = () => {
                                 </AreaChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-slate-600 dark:text-slate-500 font-medium">
+                            <div className="flex items-center justify-center h-full text-slate-900 dark:text-slate-500 font-medium">
                                 No spending data yet. Add your first expense!
                             </div>
                         )}
@@ -168,7 +168,7 @@ const Dashboard = () => {
                                     </Pie>
                                     <Legend
                                         verticalAlign="bottom" iconType="circle" iconSize={10}
-                                        formatter={(value) => <span className="text-sm font-semibold text-slate-800 dark:text-slate-400">{value}</span>}
+                                        formatter={(value) => <span className="text-sm font-semibold text-slate-900 dark:text-slate-400">{value}</span>}
                                     />
                                     <Tooltip
                                         formatter={(v) => [`₹${v.toLocaleString()}`, 'Amount']}
@@ -177,7 +177,7 @@ const Dashboard = () => {
                                 </PieChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-slate-600 dark:text-slate-500 font-medium">
+                            <div className="flex items-center justify-center h-full text-slate-900 dark:text-slate-500 font-medium">
                                 No data yet
                             </div>
                         )}
@@ -204,18 +204,18 @@ const Dashboard = () => {
                                     </div>
                                     <div>
                                         <p className="text-base font-bold text-slate-900 dark:text-slate-200">{exp.category}</p>
-                                        <p className="text-sm text-slate-700 dark:text-slate-400 font-medium">{exp.description || 'No description'}</p>
+                                        <p className="text-sm text-slate-900 dark:text-slate-400 font-medium">{exp.description || 'No description'}</p>
                                     </div>
                                 </div>
                                 <div className="text-right">
                                     <p className="text-lg font-black text-slate-900 dark:text-slate-100">₹{exp.amount.toLocaleString()}</p>
-                                    <p className="text-sm text-slate-600 dark:text-slate-500 font-medium">{new Date(exp.date).toLocaleDateString()}</p>
+                                    <p className="text-sm text-slate-900 dark:text-slate-500 font-medium">{new Date(exp.date).toLocaleDateString()}</p>
                                 </div>
                             </motion.div>
                         ))}
                     </motion.div>
                 ) : (
-                    <p className="text-center text-slate-600 dark:text-slate-500 font-medium py-8">No expenses recorded yet</p>
+                    <p className="text-center text-slate-900 dark:text-slate-500 font-medium py-8">No expenses recorded yet</p>
                 )}
             </motion.div>
         </motion.div>
